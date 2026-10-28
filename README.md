@@ -128,8 +128,16 @@ to start with any other model, revision, dtype, method version, or vector size.
 To swap it, edit those files. Then make the vector size in your database match the
 new model, and re-embed everything, because vectors from different models can't
 share an index. A coding agent can do this for you; [AGENTS.md](AGENTS.md) points
-it at the same files. Two smaller options listed on Hugging Face:
+it at the same files. Smaller options listed on Hugging Face:
 
+- [`google/embeddinggemma-2`](https://huggingface.co/google/embeddinggemma-2)
+  (released October 2026, Apache-2.0): about 740M parameters in total, and one
+  model covers text, images, video and audio in a single 768-number vector space
+  (or 512, 256, 128). It reads audio directly, so speech can go into the vector
+  without a separate transcription step. Input is up to 8K tokens. The encoders
+  load separately: text alone is 270M, and vision (170M) and audio (300M) are
+  optional. Captions and tags still need their own models if you use them for
+  moderation. Not yet tested with PostPrism.
 - [`google/embeddinggemma-300m`](https://huggingface.co/google/embeddinggemma-300m):
   300M parameters, **text only**. 768-number vectors (or 512, 256, 128), input up
   to 2048 tokens, no `float16`. To download it, you first accept Google's Gemma

@@ -47,6 +47,9 @@ If the owner asks for a lighter setup (see "Run it lighter" in
 - A swap is a fork of the vector space. Update the identity fields and output size
   together, update the tests, and tell the owner that the database vector size has
   to match and that existing vectors must be re-embedded.
+- `google/embeddinggemma-2` embeds text, images, video and audio in one 768-dim
+  space (Apache-2.0, not yet tested here). It can replace both the embedder and
+  the speech-to-vector step; captions and tags stay separate.
 - `google/embeddinggemma-300m` is text only (768 dims). Pair it with an image
   model if images and video frames must stay searchable.
 
