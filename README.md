@@ -46,6 +46,20 @@ comes along.
   PostPrism does **not** decide whether a post comes down. Feed the tags and captions
   into your own moderation rules or model.
 
+**Ideas for what to build with it:**
+
+- **Vector:** a "for you" feed, "more like this" under a post, search that finds
+  posts by meaning instead of exact words, and duplicate or repost detection.
+- **Transcripts:** subtitle drafts, "search what people said", a text version for
+  accessibility, and keyword alerts on speech. Each transcript comes with its
+  detected language. It is plain text with no timings, and at most 30 s of
+  detected speech is transcribed, so for timed subtitles on longer videos, add an
+  aligner or a dedicated subtitle model.
+- **Tags:** auto-flag posts for review, blur or age-gate sensitive content, and
+  suggest hashtags.
+- **Captions:** alt text for images, human-readable context for moderators, and
+  extra text you can index for search.
+
 ## Requirements
 
 - Linux x86_64 with an NVIDIA GPU and a driver that supports CUDA 12.9. With every
@@ -128,7 +142,8 @@ to start with any other model, revision, dtype, method version, or vector size.
 To swap it, edit those files. Then make the vector size in your database match the
 new model, and re-embed everything, because vectors from different models can't
 share an index. A coding agent can do this for you; [AGENTS.md](AGENTS.md) points
-it at the same files. Smaller options listed on Hugging Face:
+it at the same files. The default stack is what we've tested and recommend; the
+options below are lighter trade-offs, listed on Hugging Face:
 
 - [`google/embeddinggemma-2`](https://huggingface.co/google/embeddinggemma-2)
   (released October 2026, Apache-2.0): about 740M parameters in total, and one
