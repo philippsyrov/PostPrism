@@ -10,6 +10,10 @@ PostPrism is a self-hosted GPU service with two routes: `POST /enrich` and
 `GET /health`. It does not store anything. Your backend keeps the results and
 decides what to do with them.
 
+PostPrism was built and used in a private codebase for months before being
+open-sourced. This repo starts from a fresh history so that no private data
+comes along.
+
 ## Who it's for
 
 - App builders and vibe-coders on Lovable, Bolt, Supabase-style stacks who let
