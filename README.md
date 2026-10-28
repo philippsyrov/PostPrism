@@ -90,6 +90,7 @@ python3.11 -m venv .venv
 source .venv/bin/activate
 python -m pip install pip==26.2.1 setuptools==84.0.0 wheel==0.48.0
 python -m pip install -r requirements.txt
+python -m pip install --no-deps -r requirements-asr.txt
 python -m pip install --no-deps --no-build-isolation -r requirements-visual-tags.txt
 ```
 
@@ -112,7 +113,7 @@ echo "$(cat packaging/ram/checkpoint.sha256)  $RAM_CHECKPOINT_FILE" | sha256sum 
 Check the install. Both commands must succeed:
 
 ```bash
-python -m pip check
+python -m scripts.pip_check
 python -m scripts.check_ram_artifacts
 ```
 

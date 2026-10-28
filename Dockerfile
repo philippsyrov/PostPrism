@@ -30,8 +30,9 @@ RUN python3.11 -m venv "$VIRTUAL_ENV" \
     && python -m pip install --no-cache-dir pip==26.2.1 setuptools==84.0.0 wheel==0.48.0
 
 WORKDIR /app
-COPY requirements.txt requirements-visual-tags.txt ./
+COPY requirements.txt requirements-asr.txt requirements-visual-tags.txt ./
 RUN python -m pip install --no-cache-dir -r requirements.txt \
+    && python -m pip install --no-cache-dir --no-deps -r requirements-asr.txt \
     && python -m pip install --no-cache-dir --no-deps --no-build-isolation -r requirements-visual-tags.txt
 
 COPY . .
@@ -52,7 +53,7 @@ RUN git clone https://github.com/xinyu1205/recognize-anything /tmp/recognize-any
     done \
     && cp packaging/ram/tokenizer-artifacts.json "$RAM_TOKENIZER_DIR/" \
     && rm -rf /tmp/recognize-anything /tmp/ram-build \
-    && python -m pip check
+    && python -m scripts.pip_check
 
 ENV SERVICE_COMMIT=$SERVICE_COMMIT \
     HOST=0.0.0.0 \

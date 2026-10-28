@@ -24,7 +24,7 @@ REQUIRED_PACKAGE_VERSIONS = {
     "qwen-vl-utils": "0.0.14",
     "accelerate": "1.12.0",
     "av": "18.0.0",
-    "pillow": "12.3.0",
+    "pillow": "13.0.0",
     "numpy": "2.4.6",
     "fastapi": "0.141.1",
     "uvicorn": "0.52.0",

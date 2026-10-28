@@ -208,7 +208,7 @@ def test_worker_maps_corrupt_media_to_media_load_failed() -> None:
     "chunk_type,payload,parser_error",
     [
         (b"zTXt", b"label\x00\x01bad", SyntaxError),
-        (b"gAMA", b"", struct.error),
+        (b"gAMA", b"", ValueError),
         (b"iCCP", b"", IndexError),
     ],
 )

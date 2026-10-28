@@ -47,8 +47,8 @@ cache folder that validation rejects.
 [pinned upstream requirements](https://github.com/xinyu1205/recognize-anything/blob/7cb804a8609e9f4b1a50b7f31436d2df40bb9481/requirements.txt),
 are hash-pinned PyPI files in `requirements-visual-tags.txt`. `fairscale` is a
 source-only release; `--no-build-isolation` builds it with the pinned setuptools
-instead of fetching unpinned build tools. `pip check` and the RAM import pass with
-these two pins on the canonical stack (Python 3.11,
+instead of fetching unpinned build tools. `python -m scripts.pip_check` and the
+RAM import pass with these two pins on the canonical stack (Python 3.11,
 Torch `2.13.0+cu129`, torchvision `0.28.0+cu129`, Transformers `4.57.6`); RAM's
 `scipy` import is satisfied by the canonical requirements. Do not install
 upstream's mutable CLIP URL or unbounded requirements. A missing dependency or
@@ -108,7 +108,7 @@ Prepare on a connected machine with the same platform and Python. Build a
 wheelhouse for the extra packages with
 `python -m pip wheel --no-deps --no-build-isolation -r requirements-visual-tags.txt -w wheelhouse`
 and install from it with `--no-deps --no-index --find-links wheelhouse`; do the
-same for `requirements.txt`. Copy the RAM wheel, checkpoint, and tokenizer
+same for `requirements.txt` and `requirements-asr.txt`. Copy the RAM wheel, checkpoint, and tokenizer
 directory, cache all four Hugging Face models with their processors or feature
 extractors, then set `HF_HUB_OFFLINE=1` and `TRANSFORMERS_OFFLINE=1`.
 

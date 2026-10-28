@@ -21,6 +21,8 @@ jobs:
           python-version: "3.11"
       - run: python -m pip install --upgrade pip
       - run: python -m pip install -r requirements.txt -r requirements-dev.txt
+      - run: python -m pip install --no-deps -r requirements-asr.txt
+      - run: python -m scripts.pip_check
       - run: ./verify.sh
       # The accepted Qwen stack requires Transformers 4.57.6. These advisories
       # concern untrusted X-CLIP/LightGlue/Trainer inputs or saving a malicious
@@ -30,6 +32,12 @@ jobs:
       # service reaches device dispatch only, while Qwen-ASR pins Accelerate
       # 1.12.0 exactly. Remove this exception when Qwen-ASR supports an
       # Accelerate release that actually validates weight_map shard paths.
+      # PYSEC-2026-4174 concerns Transformers fetching a model repo's
+      # custom_generate/generate.py before the trust_remote_code check. It has
+      # no fixed release, and Qwen-ASR pins Transformers 4.57.6 exactly. Every
+      # model loads from a pinned commit with no custom_generate/ directory,
+      # and generation never passes custom_generate. Remove this exception when
+      # a fixed Transformers release works with Qwen-ASR.
       - run: >-
           pip-audit -r requirements.txt
           --ignore-vuln PYSEC-2025-217
@@ -38,6 +46,8 @@ jobs:
           --ignore-vuln PYSEC-2026-2290
           --ignore-vuln CVE-2026-9856
           --ignore-vuln PYSEC-2026-3804
+          --ignore-vuln PYSEC-2026-4174
+      - run: pip-audit --disable-pip -r requirements-asr.txt
 
   secrets:
     runs-on: ubuntu-latest

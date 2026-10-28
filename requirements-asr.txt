@@ -1,0 +1,7 @@
+# Install with --no-deps after requirements.txt, which pins every runtime
+# dependency. Skipped on purpose: gradio, used only by qwen_asr.cli.demo, whose
+# Pillow<13 cap would hold back Pillow security fixes. scripts/pip_check.py
+# allows exactly that one missing requirement.
+qwen-asr==0.0.6 \
+    --hash=sha256:b9c55a38413298f3a990a4475467399daec6e8f4172363053fc42e2166c2dfd3 \
+    --hash=sha256:294893f2340dc2d58d1f1d1cb8ce26ac0a79f254805ab432dda2892bd5c8d13c

@@ -72,6 +72,6 @@ Pinned Python packages used by RAM++ (requirements-visual-tags.txt)
   timm 0.4.12: Apache-2.0
   fairscale 0.4.4: BSD-3-Clause
 
-Other Python packages in requirements.txt are installed from PyPI under their
-own licenses, including qwen-asr 0.0.6 (Apache-2.0) and qwen-vl-utils 0.0.14
-(Apache-2.0).
+Other Python packages in requirements.txt and requirements-asr.txt are
+installed from PyPI under their own licenses, including qwen-asr 0.0.6
+(Apache-2.0) and qwen-vl-utils 0.0.14 (Apache-2.0).
