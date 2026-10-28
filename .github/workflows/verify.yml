@@ -1,0 +1,53 @@
+name: verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    env:
+      PIP_NO_CACHE_DIR: "true"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -r requirements.txt -r requirements-dev.txt
+      - run: ./verify.sh
+      # The accepted Qwen stack requires Transformers 4.57.6. These advisories
+      # concern untrusted X-CLIP/LightGlue/Trainer inputs or saving a malicious
+      # processor. This service loads only immutable reviewed model revisions,
+      # accepts no model IDs/checkpoints over HTTP, and never saves processors.
+      # PYSEC-2026-3804 concerns Accelerate's sharded-checkpoint loaders. This
+      # service reaches device dispatch only, while Qwen-ASR pins Accelerate
+      # 1.12.0 exactly. Remove this exception when Qwen-ASR supports an
+      # Accelerate release that actually validates weight_map shard paths.
+      - run: >-
+          pip-audit -r requirements.txt
+          --ignore-vuln PYSEC-2025-217
+          --ignore-vuln PYSEC-2026-2288
+          --ignore-vuln PYSEC-2026-2289
+          --ignore-vuln PYSEC-2026-2290
+          --ignore-vuln CVE-2026-9856
+          --ignore-vuln PYSEC-2026-3804
+
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # .gitleaks.toml uses [[allowlists]] conditions (gitleaks >= 8.25); the
+          # action's default is 8.24.3. Matches the local pre-commit scanner.
+          GITLEAKS_VERSION: "8.30.1"

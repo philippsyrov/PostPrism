@@ -1,0 +1,18 @@
+diff --git a/ram/models/bert.py b/ram/models/bert.py
+index 5c0f544..d10ce2f 100644
+--- a/ram/models/bert.py
++++ b/ram/models/bert.py
+@@ -36,12 +36,12 @@ from transformers.modeling_outputs import (
+     SequenceClassifierOutput,
+     TokenClassifierOutput,
+ )
+-from transformers.modeling_utils import (
+-    PreTrainedModel,
++from transformers.modeling_utils import PreTrainedModel
++from transformers.pytorch_utils import (
+     apply_chunking_to_forward,
+     find_pruneable_heads_and_indices,
+     prune_linear_layer,
+ )
+ from transformers.utils import logging
+ from transformers.models.bert.configuration_bert import BertConfig

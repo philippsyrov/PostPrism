@@ -1,0 +1,77 @@
+PostPrism
+Copyright 2026 The PostPrism authors
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+This repository contains no model weights. The models below are downloaded at
+install time or on first start from their public sources, at the pinned
+revisions, and stay under their own licenses. The license of each was read
+from its model card at the pinned revision.
+
+| Model | Pinned revision | Role | License |
+| --- | --- | --- | --- |
+| Qwen/Qwen3-VL-Embedding-2B | 9f2f7e710d6d81056aa5c0a4f04764fec6bb7bda | 1024-number search vector | Apache-2.0 |
+| Qwen/Qwen3-ASR-0.6B | bda30b99af3446a954339e28465acf530464e52e | speech transcripts | Apache-2.0 |
+| Qwen/Qwen3-VL-2B-Instruct | 89644892e4d85e24eaac8bacfd4f463576704203 | captions | Apache-2.0 |
+| MIT/ast-finetuned-audioset-10-10-0.4593 | f826b80d28226b62986cc218e5cec390b1096902 | speech/music gate | BSD-3-Clause |
+| xinyu1205/recognize-anything-plus-model (ram_plus_swin_large_14m.pth) | 84d4aee3a0265c4e0df1f714f0572011d1bf2ec3 | RAM++ tag checkpoint | Apache-2.0 |
+| google-bert/bert-base-uncased (tokenizer files only) | 86b5e0934494bd15c9632b12f734a8a67f723594 | RAM++ tokenizer | Apache-2.0 |
+
+Third-party code built or installed by the setup steps
+-------------------------------------------------------
+
+recognize-anything (RAM++)
+  Source: https://github.com/xinyu1205/recognize-anything
+  Pinned commit: 7cb804a8609e9f4b1a50b7f31436d2df40bb9481
+  License: Apache-2.0, Copyright (c) 2022 OPPO.
+  The setup steps clone this source and build a local wheel from it. It is not
+  copied into this repository. Its own NOTICE.txt credits BLIP (BSD-3-Clause,
+  Salesforce.com, Inc.), Swin Transformer (MIT, Microsoft Corporation),
+  pytorch-image-models (Apache-2.0) and transformers (Apache-2.0).
+
+packaging/ram/transformers-457.patch
+  This file is a patch to recognize-anything's ram/models/bert.py so that it
+  works with Transformers 4.57. That upstream file carries this header:
+  "Copyright (c) 2022, salesforce.com, inc. All rights reserved.
+  SPDX-License-Identifier: BSD-3-Clause ... By Junnan Li. Based on huggingface
+  code base transformers v4.15.0 bert". The patch contains lines from that
+  file, so those lines are under the BSD-3-Clause license below, not under
+  this repository's Apache-2.0 license:
+
+    Copyright (c) 2022, Salesforce.com, Inc.
+    All rights reserved.
+
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are
+    met:
+
+    * Redistributions of source code must retain the above copyright notice,
+      this list of conditions and the following disclaimer.
+
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+
+    * Neither the name of Salesforce.com nor the names of its contributors
+      may be used to endorse or promote products derived from this software
+      without specific prior written permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+    IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+    THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+    PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+    CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+    EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+    PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+    PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+    LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+    NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+Pinned Python packages used by RAM++ (requirements-visual-tags.txt)
+  timm 0.4.12: Apache-2.0
+  fairscale 0.4.4: BSD-3-Clause
+
+Other Python packages in requirements.txt are installed from PyPI under their
+own licenses, including qwen-asr 0.0.6 (Apache-2.0) and qwen-vl-utils 0.0.14
+(Apache-2.0).

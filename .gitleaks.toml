@@ -1,0 +1,14 @@
+# Default gitleaks rules plus one narrow exception: in the tokenizer manifest, a
+# generic-api-key finding whose value is exactly a 64-hex SHA-256 digest is a public
+# file pin (the file names contain "token"). Any other value in that file, and every
+# other rule, is still reported. Needs gitleaks >= 8.25 (CI pins it in verify.yml).
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Public SHA-256 pins of the bert-base-uncased tokenizer files"
+condition = "AND"
+targetRules = ["generic-api-key"]
+paths = ['''^packaging/ram/tokenizer-artifacts\.json$''']
+regexTarget = "secret"
+regexes = ['''^[0-9a-f]{64}$''']

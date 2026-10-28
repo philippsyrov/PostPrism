@@ -1,0 +1,7 @@
+# Pinned upstream requirements at 7cb804a8609e9f4b1a50b7f31436d2df40bb9481.
+# Hash-pinned PyPI files; install with --no-deps --no-build-isolation (see DEPLOYMENT.md).
+timm==0.4.12 \
+    --hash=sha256:dba6b1702b7d24bf9f0f1c2fc394b4ee28f93cde5404f1dc732d63ccd00533b6 \
+    --hash=sha256:b14be70dbd4528b5ca8657cf5bc2672c7918c3d9ebfbffe80f4785b54e884b1e
+fairscale==0.4.4 \
+    --hash=sha256:7719898743dc58c04a2294c896ee6308c92ccb3af9e10632b2a62f77cb689357

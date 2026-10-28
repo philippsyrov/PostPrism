@@ -1,0 +1,57 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+.cursor/
+.claude/
+.codex/
+*.swp
+*.swo
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ML model weights / caches
+*.bin
+*.pt
+*.pth
+*.onnx
+*.safetensors
+*.metrics.json
+model_cache/
+huggingface_cache/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Testing
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs
+*.log
+
+# Local media, evaluation output and agent scratch files (never commit)
+screenshots/
+calibration_out/
+.superpowers/
