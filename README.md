@@ -38,11 +38,12 @@ comes along.
 ## What each part is for
 
 - **Search vector**: captures what the post means, for search and recommendations.
-- **Speech transcripts**: trusted speech goes into the vector, so the audio adds
-  meaning the visuals miss. If a video shows seals and the voice-over talks about
-  crypto, the post can be found under both.
+- **Speech transcripts**: each video comes back with a transcript of what's said.
+  When the speech is clear enough to trust, it also goes into the search vector,
+  so a search matches what a video says, not just what it shows.
 - **Captions and tags**: mostly for moderation. RAM++ tags flag visible things
-  such as `gun`, `rifle`, or `syringe`, and captions describe each image or video.
+  such as `gun`, `rifle`, or `syringe` (up to six per image or video, from RAM++'s
+  fixed list of about 4,500 tags), and captions describe each image or video.
   PostPrism does **not** decide whether a post comes down. Feed the tags and captions
   into your own moderation rules or model.
 
